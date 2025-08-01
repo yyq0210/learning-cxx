@@ -1,14 +1,19 @@
 #include "../exercise.h"
 
-constexpr unsigned long long fibonacci(int i) {
-    switch (i) {
-        case 0:
-            return 0;
-        case 1:
-            return 1;
-        default:
-            return fibonacci(i - 1) + fibonacci(i - 2);
+/*
+编译器默认对constexpr函数的求值操作次数限制是33,554,432次（即2^25次），而递归调用超过了这个限制。
+*/
+
+constexpr unsigned long long fibonacci(const int i) {
+    if (i <= 1) return i;
+    
+    unsigned long long a = 0, b = 1;
+    for (int j = 2; j <= i; ++j) {
+        unsigned long long next = a + b;
+        a = b;
+        b = next;
     }
+    return b;
 }
 
 int main(int argc, char **argv) {

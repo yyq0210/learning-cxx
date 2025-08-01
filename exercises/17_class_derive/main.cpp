@@ -45,14 +45,16 @@ struct B : public A {
 };
 
 int main(int argc, char **argv) {
-    X x = X(1);
-    A a = A(2);
-    B b = B(3);
+    X x = X(1); 
+    A a = A(2); 
+    B b = B(3); 
 
     // TODO: 补全三个类型的大小
-    static_assert(sizeof(X) == ?, "There is an int in X");
-    static_assert(sizeof(A) == ?, "There is an int in A");
-    static_assert(sizeof(B) == ?, "B is an A with an X");
+    static_assert(sizeof(X) == sizeof(int), "There is an int in X");
+    static_assert(sizeof(A) == sizeof(int), "There is an int in A");
+    static_assert(sizeof(B) == sizeof(A) + sizeof(X), "B is an A with an X");
+
+    std::cout << x.x << ' ' << a.a << ' ' << b.a << ' ' << b.x.x << std::endl;  
 
     i = 0;
     std::cout << std::endl
@@ -67,6 +69,7 @@ int main(int argc, char **argv) {
     // THINK: 观察打印出的信息，推测把大象放进冰箱分几步？
     // THINK: 这样的代码是“安全”的吗？
     // NOTICE: 真实场景中不太可能出现这样的代码
+    std::cout << ab.a << ' ' << std::endl;  
 
     i = 0;
     std::cout << std::endl
